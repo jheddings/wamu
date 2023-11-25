@@ -72,14 +72,22 @@ class Temperature(Quantity, ABC):
         """Return the value of this quantity as Kelvin."""
         return self.kelvin
 
+    def __call__(self, type):  # noqa: C901
+        """Convert this Temperature quantity to the given type."""
+        if type == Celsius:
+            return Celsius(self.celcius)
 
-class Celsius(Temperature):
+        if type == Fahrenheit:
+            return Fahrenheit(self.fahrenheit)
+
+        if type == Kelvin:
+            return Kelvin(self.kelvin)
+
+        raise TypeError(f"Cannot convert to {type}")
+
+
+class Celsius(Temperature, symbol=TemperatureUnit.CELCIUS):
     """A representation of Celsius quantities."""
-
-    @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return TemperatureUnit.CELCIUS
 
     @property
     def celcius(self):
@@ -92,13 +100,8 @@ class Celsius(Temperature):
         return (self.celcius * 1.8) + 32.0
 
 
-class Fahrenheit(Temperature):
+class Fahrenheit(Temperature, symbol=TemperatureUnit.FAHRENHEIT):
     """A representation of Fahrenheit quantities."""
-
-    @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return TemperatureUnit.FAHRENHEIT
 
     @property
     def celcius(self):
@@ -111,13 +114,8 @@ class Fahrenheit(Temperature):
         return self.value
 
 
-class Kelvin(Celsius):
+class Kelvin(Celsius, symbol=TemperatureUnit.KELVIN):
     """A representation of Kelvin quantities."""
-
-    @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return TemperatureUnit.KELVIN
 
     @property
     def celcius(self):

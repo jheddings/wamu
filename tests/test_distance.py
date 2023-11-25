@@ -2,12 +2,23 @@
 
 from conftest import isclose
 
-import wamu
+from wamu.distance import (
+    Foot,
+    Inch,
+    Kilometer,
+    LightYear,
+    Meter,
+    Mile,
+    Millimeter,
+    NauticalMile,
+    Parsec,
+    Yard,
+)
 
 
 def test_one_meter():
     """Confirm simple Meter conversions."""
-    meter = wamu.Meter(1)
+    meter = Meter(1)
 
     assert meter == 1.0
 
@@ -28,7 +39,7 @@ def test_one_meter():
 
 def test_one_kilometer():
     """Confirm simple Kilometer conversions."""
-    kilo = wamu.Kilometer(1)
+    kilo = Kilometer(1)
 
     assert kilo == 1.0
 
@@ -46,7 +57,7 @@ def test_one_kilometer():
 
 def test_one_millimeter():
     """Confirm simple Millimeter conversions."""
-    mm = wamu.Millimeter(1)
+    mm = Millimeter(1)
 
     assert mm == 1.0
 
@@ -66,7 +77,7 @@ def test_one_millimeter():
 
 def test_one_mile():
     """Confirm simple Mile conversions."""
-    mile = wamu.Mile(1)
+    mile = Mile(1)
 
     assert mile == 1.0
 
@@ -86,7 +97,7 @@ def test_one_mile():
 
 def test_one_yard():
     """Confirm simple Yard conversions."""
-    yard = wamu.Yard(1)
+    yard = Yard(1)
 
     assert yard == 1.0
 
@@ -105,7 +116,7 @@ def test_one_yard():
 
 def test_one_foot():
     """Confirm simple Feet conversions."""
-    foot = wamu.Foot(1)
+    foot = Foot(1)
 
     assert foot == 1.0
 
@@ -121,7 +132,7 @@ def test_one_foot():
 
 def test_one_inch():
     """Confirm simple Inch conversions."""
-    inch = wamu.Inch(1)
+    inch = Inch(1)
 
     assert inch == 1.0
 
@@ -137,3 +148,58 @@ def test_one_inch():
 
     assert str(inch) == "1 in"
     assert repr(inch) == "Inch(1)"
+
+
+def test_one_nautical_mile():
+    """Confirm simple Nautical Mile conversions."""
+    nm = NauticalMile(1)
+
+    assert nm == 1.0
+
+    assert float(nm) == 1.0
+    assert int(nm) == 1
+
+    assert nm.meters == 1852.0
+    assert nm.kilometers == 1.852
+
+    assert isclose(nm.feet, 6076.1155)
+    assert isclose(nm.yards, 2025.3718)
+    assert isclose(nm.miles, 1.1507794)
+
+    assert str(nm) == "1 NM"
+    assert repr(nm) == "NauticalMile(1)"
+
+
+def test_one_parsec():
+    """Confirm simple Parsec conversions."""
+    pc = Parsec(1)
+
+    assert pc == 1.0
+
+    assert float(pc) == 1.0
+    assert int(pc) == 1
+
+    assert isclose(pc.miles, 19173513289161)
+    assert isclose(pc.kilometers, 30856778570831)
+    assert isclose(pc.light_years, 3.261563777)
+
+    assert str(pc) == "1 pc"
+    assert repr(pc) == "Parsec(1)"
+
+
+def test_one_light_year():
+    """Confirm simple Light Year conversions."""
+    ly = LightYear(1)
+
+    assert ly == 1.0
+
+    assert float(ly) == 1.0
+    assert int(ly) == 1
+
+    assert ly.kilometers == 9460730472580.8
+
+    assert isclose(ly.miles, 5878625373183)
+    assert isclose(ly.parsecs, 0.30660139)
+
+    assert str(ly) == "1 ly"
+    assert repr(ly) == "LightYear(1)"

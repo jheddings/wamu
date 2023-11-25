@@ -2,12 +2,12 @@
 
 from conftest import isclose
 
-import wamu
+from wamu.weight import Gram, Kilogram, Milligram, Ounce, Pound
 
 
 def test_one_kg():
     """Confirm simple Kilogram conversions."""
-    kg = wamu.Kilogram(1)
+    kg = Kilogram(1)
 
     assert kg == 1.0
 
@@ -24,7 +24,7 @@ def test_one_kg():
 
 def test_one_g():
     """Confirm simple Gram conversions."""
-    g = wamu.Gram(1)
+    g = Gram(1)
 
     assert g == 1.0
 
@@ -39,9 +39,26 @@ def test_one_g():
     assert isclose(g.ounces, 0.035274)
 
 
+def test_one_mg():
+    """Confirm simple Milligram conversions."""
+    mg = Milligram(1)
+
+    assert mg == 1.0
+
+    assert float(mg) == 1.0
+    assert int(mg) == 1
+
+    assert mg.kilograms == 0.000001
+    assert mg.grams == 0.001
+    assert mg.milligrams == 1.0
+
+    assert isclose(mg.pounds, 0.000002204622)
+    assert isclose(mg.ounces, 0.000035274)
+
+
 def test_one_lb():
     """Confirm simple Pound conversions."""
-    lb = wamu.Pound(1)
+    lb = Pound(1)
 
     assert lb == 1.0
 
@@ -57,7 +74,7 @@ def test_one_lb():
 
 def test_one_oz():
     """Confirm simple Ounce conversions."""
-    oz = wamu.Ounce(1)
+    oz = Ounce(1)
 
     assert oz == 1.0
 

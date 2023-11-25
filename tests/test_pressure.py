@@ -2,12 +2,12 @@
 
 from conftest import isclose
 
-import wamu
+from wamu.pressure import Hectopascal, InchesMercury, Pascal
 
 
 def test_one_pascal():
     """Confirm simple Pascal conversions."""
-    pa = wamu.Pascal(1)
+    pa = Pascal(1)
 
     assert pa == 1.0
 
@@ -23,7 +23,7 @@ def test_one_pascal():
 
 def test_one_hPa():
     """Confirm simple Hectopascal conversions."""
-    hPa = wamu.Hectopascal(1)
+    hPa = Hectopascal(1)
 
     assert hPa == 1.0
 
@@ -40,7 +40,7 @@ def test_one_hPa():
 
 def test_one_inHg():
     """Confirm simple InchesMercury conversions."""
-    inHg = wamu.InchesMercury(1)
+    inHg = InchesMercury(1)
 
     assert inHg == 1.0
 

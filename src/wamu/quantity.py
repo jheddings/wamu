@@ -1,5 +1,6 @@
 """Base functionality for working with quantities."""
 
+from abc import abstractmethod
 from enum import Enum
 from typing import Union
 
@@ -11,8 +12,20 @@ class UnitSymbol(str, Enum):
 class Quantity:
     """Base class for all quantities."""
 
+    _unit_symbol = None
+
     def __init__(self, value: Union[int, float]):
         self.value = value
+
+    def __init_subclass__(cls, symbol: UnitSymbol = None, **kwargs):
+        """Register all subclasses with their symbols."""
+        super().__init_subclass__(**kwargs)
+
+        cls._unit_symbol = symbol
+
+    @abstractmethod
+    def __call__(self, type):
+        """Convert this Quantity to the given type."""
 
     def __getattribute__(self, attr):
         """Return the requested attribute of this `Quantity`, or None.
@@ -29,9 +42,9 @@ class Quantity:
         NOTE - this does not affect the math (dunder) operations on `Quantity` objects.
         """
 
-        # avoid recursion if `value` is requested ...
-        if attr == "value":
-            return super().__getattribute__("value")
+        # handle special cases to avoid infinite recursion
+        if attr == "value" or attr.startswith("_"):
+            return object.__getattribute__(self, attr)
 
         # ... if the contained value is None, return None
         if self.value is None:
@@ -90,11 +103,11 @@ class Quantity:
 
     def __eq__(self, other):
         """Determine if this `Quantity` value is equal to `other`."""
-        return other == self.value
+        return self.value == self._other_value(other)
 
     def __ne__(self, other):
         """Determine if this property is not equal to the given object."""
-        return other != self.value
+        return self.value != self._other_value(other)
 
     def __le__(self, other):
         """Return `True` if this `Quantity` value is less-than-or-equal-to `other`."""
@@ -102,7 +115,7 @@ class Quantity:
 
     def __lt__(self, other):
         """Return `True` if this `Quantity` value is less-than `other`."""
-        return other > self.value
+        return self.value < self._other_value(other)
 
     def __ge__(self, other):
         """Return `True` if this `Quantity` value is greater-than-or-equal-to `other`."""
@@ -110,7 +123,7 @@ class Quantity:
 
     def __gt__(self, other):
         """Return `True` if this `Quantity` value is greater-than `other`."""
-        return other < self.value
+        return self.value > self._other_value(other)
 
     def __str__(self):
         """Return a human readable string for this quantity."""
@@ -126,25 +139,29 @@ class Quantity:
         return f"{self.__class__.__name__}({self.value})"
 
     def _other_value(self, other):
-        """Return the value of `other` if it is a Quantity, otherwise return `other`.
+        """Return a float representation of `other`.
 
-        If `other` is a `Quantity`, this method will also check that the objects are
-        compatible.  If they are not, a `TypeError` will be raised.
+        When `other` is a number, this method will simply return the number.
+
+        If `other` is another `Quantity`, this method will convert the value to a
+        matching type for this `Quantity` and return the value.
+
+        If `other` is unsupported, this method will raise a `TypeError`.
         """
 
         if isinstance(other, Quantity):
-            # in the future, we might want to support conversions between compatible
-            # quantities; but for now, we only support quantities of the same type
+            # attempt to convert other to a matching type for this Quantity
             if not isinstance(other, self.__class__):
-                raise TypeError(
-                    f"Cannot operate on {self.__class__.__name__} and {other.__class__.__name__}"
-                )
+                try:
+                    other = other(self.__class__)
+                except TypeError as err:
+                    raise TypeError("Incompatible types") from err
 
             return other.value
 
         return other
 
     @property
-    def symbol(self) -> Union[UnitSymbol, None]:
+    def symbol(self):
         """Return the unit symbol of this quantity."""
-        return None
+        return self.__class__._unit_symbol

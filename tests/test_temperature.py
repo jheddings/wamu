@@ -1,9 +1,9 @@
 """Unit tests for temperature units."""
 
-import wamu
+from wamu.temperature import Celsius, Fahrenheit, Kelvin, Temperature
 
 
-def assert_is_freezing(temp: wamu.temperature.Temperature):
+def assert_is_freezing(temp: Temperature):
     """Assert all values match expected levels for freezing."""
     assert temp.celcius == 0.0
     assert temp.fahrenheit == 32.0
@@ -12,7 +12,7 @@ def assert_is_freezing(temp: wamu.temperature.Temperature):
 
 def test_convert_none():
     """Make sure that conversions with None are also None."""
-    tempC = wamu.Celsius(None)
+    tempC = Celsius(None)
 
     assert tempC.celcius is None
     assert tempC.fahrenheit is None
@@ -21,7 +21,7 @@ def test_convert_none():
 
 def test_degC_freezing():
     """Confirm Celsius conversions for freezing."""
-    tempC = wamu.Celsius(0)
+    tempC = Celsius(0)
 
     assert tempC == 0.0
 
@@ -36,7 +36,7 @@ def test_degC_freezing():
 
 def test_degF_freezing():
     """Confirm Fahrenheit conversions for freezing."""
-    tempF = wamu.Fahrenheit(32)
+    tempF = Fahrenheit(32)
 
     assert tempF == 32.0
 
@@ -51,7 +51,7 @@ def test_degF_freezing():
 
 def test_degK_freezing():
     """Confirm Kelvin conversions for freezing."""
-    tempK = wamu.Kelvin(273.15)
+    tempK = Kelvin(273.15)
 
     assert tempK == 273.15
 
@@ -66,14 +66,39 @@ def test_degK_freezing():
 
 def test_boiling_temps():
     """Confirm conversions for boiling temperatures."""
-    tempF = wamu.Fahrenheit(212.0)
+    tempF = Fahrenheit(212.0)
     assert tempF.celcius == 100.0
     assert tempF.kelvin == 373.15
 
-    tempC = wamu.Celsius(100.0)
+    tempC = Celsius(100.0)
     assert tempC.fahrenheit == 212.0
     assert tempF.kelvin == 373.15
 
-    tempK = wamu.Kelvin(373.15)
+    tempK = Kelvin(373.15)
     assert tempK.celcius == 100.0
     assert tempK.fahrenheit == 212.0
+
+
+def test_mixed_temp_math():
+    """Confirm math works with different temperature types."""
+    tempC = Celsius(0)
+    tempC += Fahrenheit(212)
+
+    assert tempC.celcius == 100.0
+    assert tempC.fahrenheit == 212.0
+
+    tempK = Kelvin(0)
+    tempK += Celsius(100)
+
+    assert tempK.kelvin == 373.15
+    assert tempK.celcius == 100.0
+
+
+def test_mixed_temp_compare():
+    """Confirm comparison works with different temperature types."""
+    assert Celsius(0) == Fahrenheit(32)
+    assert Celsius(100) > Kelvin(100)
+
+    # make sure numbers can appear on either side of the comparison
+    assert 100 >= Kelvin(100)
+    assert Kelvin(100) >= 100

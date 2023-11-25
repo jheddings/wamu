@@ -12,6 +12,9 @@ def test_basic_none():
     assert qty.value is None
     assert qty == None  # noqa: E711
 
+    assert str(qty) == "None"
+    assert repr(qty) == "Quantity(None)"
+
 
 def test_none_math():
     """Check that math with None behaves as expected."""

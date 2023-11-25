@@ -2,12 +2,12 @@
 
 from conftest import isclose
 
-import wamu
+from wamu.volume import FluidOunceUS, Gallon, Liter, Milliliter, Pint, Quart
 
 
 def test_one_liter():
     """Confirm simple Liter conversions."""
-    liter = wamu.Liter(1)
+    liter = Liter(1)
 
     assert liter == 1.0
 
@@ -28,7 +28,7 @@ def test_one_liter():
 
 def test_one_ml():
     """Confirm simple Milliliter conversions."""
-    ml = wamu.Milliliter(1)
+    ml = Milliliter(1)
 
     assert ml == 1.0
 
@@ -46,7 +46,7 @@ def test_one_ml():
 
 def test_one_gal():
     """Confirm simple Gallon conversions."""
-    gal = wamu.Gallon(1)
+    gal = Gallon(1)
 
     assert gal == 1.0
 
@@ -67,7 +67,7 @@ def test_one_gal():
 
 def test_one_pint():
     """Confirm simple Pint conversions."""
-    pint = wamu.Pint(1)
+    pint = Pint(1)
 
     assert pint == 1.0
 
@@ -87,7 +87,7 @@ def test_one_pint():
 
 def test_one_quart():
     """Confirm simple Quart conversions."""
-    quart = wamu.Quart(1)
+    quart = Quart(1)
 
     assert quart == 1.0
 
@@ -106,7 +106,7 @@ def test_one_quart():
 
 def test_one_us_oz():
     """Confirm simple US fluid ounce conversions."""
-    fl_oz = wamu.FluidOunceUS(1)
+    fl_oz = FluidOunceUS(1)
 
     assert fl_oz == 1.0
 

@@ -28,6 +28,10 @@ class DistanceUnit(UnitSymbol):
     MILES = "mi"
     MI = "mi"
 
+    NAUTICAL_MILE = "NM"
+    NAUTICAL_MILES = "NM"
+    NM = "NM"
+
     FOOT = "ft"
     FEET = "ft"
     FT = "ft"
@@ -40,9 +44,17 @@ class DistanceUnit(UnitSymbol):
     YARDS = "yd"
     YD = "yd"
 
+    ASTRONOMICAL_UNIT = "au"
+    ASTRONOMICAL_UNITS = "au"
+    AU = "au"
+
     PARSEC = "pc"
     PARSECS = "pc"
     PC = "pc"
+
+    LIGHT_YEAR = "ly"
+    LIGHT_YEARS = "ly"
+    LY = "ly"
 
 
 class Distance(Quantity, ABC):
@@ -87,95 +99,105 @@ class Distance(Quantity, ABC):
         return self.feet / 3.0
 
     @property
-    def knots(self):
+    def astronomical_units(self):
+        """Return the value of this quantity in astronomical units."""
+        return self.meters / 149597870700
+
+    @property
+    def nautical_miles(self):
         """Return the value of this quantity in nautical miles."""
         return self.feet * 0.00016458
 
     @property
-    def parsecs(self):
-        """Return the value of this quantity in parsecs (because we can)."""
-        return self.miles * 5.2155286735076e-14
-
-
-class Meter(Distance):
-    """A representation of a meter."""
+    def light_years(self):
+        """Return the value of this quantity in light years."""
+        return self.meters / 9460730472580800
 
     @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return DistanceUnit.METER
+    def parsecs(self):
+        """Return the value of this quantity in parsecs."""
+        return self.miles / 19173511575400
+
+    def __call__(self, type):  # noqa: C901
+        """Convert this Distance quantity to the given type."""
+        if type == Meter:
+            return Meter(self.meters)
+
+        if type == Kilometer:
+            return Kilometer(self.kilometers)
+
+        if type == Centimeter:
+            return Centimeter(self.centimeters)
+
+        if type == Millimeter:
+            return Millimeter(self.millimeters)
+
+        if type == Mile:
+            return Mile(self.miles)
+
+        if type == Foot:
+            return Foot(self.feet)
+
+        if type == Inch:
+            return Inch(self.inches)
+
+        if type == Yard:
+            return Yard(self.yards)
+
+        if type == NauticalMile:
+            return NauticalMile(self.nautical_miles)
+
+        if type == AstronomicalUnit:
+            return AstronomicalUnit(self.astronomical_units)
+
+        if type == LightYear:
+            return LightYear(self.light_years)
+
+        if type == Parsec:
+            return Parsec(self.parsecs)
+
+        raise TypeError(f"Cannot convert to {type}")
+
+
+class Meter(Distance, symbol=DistanceUnit.METER):
+    """A representation of a meter."""
 
     @property
     def meters(self):
         return self.value
 
     @property
-    def miles(self):
-        """Return the value of this quantity in miles."""
-        return self.kilometers * 0.6213711922
-
-    @property
     def feet(self):
         """Return the value of this quantity in feet."""
         return self.meters * 3.28084
 
-    @property
-    def inches(self):
-        """Return the value of this quantity in inches."""
-        return self.meters * 39.37007874
 
-    @property
-    def yards(self):
-        """Return the value of this quantity in yards."""
-        return self.meters * 1.0936132983
-
-
-class Millimeter(Meter):
+class Millimeter(Meter, symbol=DistanceUnit.MILLIMETER):
     """A representation of a millimeter."""
-
-    @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return DistanceUnit.MILLIMETER
 
     @property
     def meters(self):
         return self.value * 0.001
 
 
-class Centimeter(Meter):
+class Centimeter(Meter, symbol=DistanceUnit.CENTIMETER):
     """A representation of a centimeter."""
-
-    @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return DistanceUnit.CENTIMETER
 
     @property
     def meters(self):
         return self.value * 0.01
 
 
-class Kilometer(Meter):
+class Kilometer(Meter, symbol=DistanceUnit.KILOMETER):
     """A representation of a kilometer."""
-
-    @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return DistanceUnit.KILOMETER
 
     @property
     def meters(self):
         return self.value * 1000.0
 
 
-class Foot(Distance):
+class Foot(Distance, symbol=DistanceUnit.FOOT):
     """A representation of foot measurements."""
-
-    @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return DistanceUnit.FOOT
 
     @property
     def meters(self):
@@ -187,13 +209,8 @@ class Foot(Distance):
         return self.value
 
 
-class Mile(Foot):
+class Mile(Foot, symbol=DistanceUnit.MILE):
     """A representation of a mile."""
-
-    @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return DistanceUnit.MILE
 
     @property
     def feet(self):
@@ -201,13 +218,8 @@ class Mile(Foot):
         return self.value * 5280.0
 
 
-class Yard(Foot):
+class Yard(Foot, symbol=DistanceUnit.YARD):
     """A representation of a yard."""
-
-    @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return DistanceUnit.YARD
 
     @property
     def feet(self):
@@ -215,15 +227,46 @@ class Yard(Foot):
         return self.value * 3.0
 
 
-class Inch(Foot):
+class Inch(Foot, symbol=DistanceUnit.INCH):
     """A representation of an inch."""
-
-    @property
-    def symbol(self):
-        """Return the unit symbol for this quantity."""
-        return DistanceUnit.INCH
 
     @property
     def feet(self):
         """Return the value of this quantity in feet."""
         return self.value / 12.0
+
+
+class NauticalMile(Meter, symbol=DistanceUnit.NAUTICAL_MILE):
+    """A representation of a nautical mile."""
+
+    @property
+    def meters(self):
+        """Return the value of this quantity in meters."""
+        return self.value * 1852.0
+
+
+class AstronomicalUnit(Meter, symbol=DistanceUnit.ASTRONOMICAL_UNIT):
+    """A representation of an astronomical unit."""
+
+    @property
+    def meters(self):
+        """Return the value of this quantity in meters."""
+        return self.value * 149597870700
+
+
+class LightYear(AstronomicalUnit, symbol=DistanceUnit.LIGHT_YEAR):
+    """A representation of a light year."""
+
+    @property
+    def meters(self):
+        """Return the value of this quantity in meters."""
+        return self.value * 9460730472580800
+
+
+class Parsec(AstronomicalUnit, symbol=DistanceUnit.PARSEC):
+    """A representation of a parsec."""
+
+    @property
+    def meters(self):
+        """Return the value of this quantity in meters."""
+        return self.value * 30856775814671900

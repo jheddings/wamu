@@ -1,6 +1,16 @@
 """Methods and classes for converting between units."""
 
-from .distance import Centimeter, Foot, Inch, Kilometer, Meter, Mile, Millimeter, Yard
+from .distance import (
+    Centimeter,
+    Foot,
+    Inch,
+    Kilometer,
+    Meter,
+    Mile,
+    Millimeter,
+    NauticalMile,
+    Yard,
+)
 from .pressure import Hectopascal, InchesMercury, Pascal
 from .rate import InchesPerHour, MillimetersPerHour
 from .temperature import Celsius, Fahrenheit, Kelvin
@@ -34,6 +44,7 @@ __all__ = [
     "MillimetersPerHour",
     "Milligram",
     "Milliliter",
+    "NauticalMile",
     "Ounce",
     "Pascal",
     "Pint",
