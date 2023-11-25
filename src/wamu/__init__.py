@@ -1,6 +1,5 @@
 """Methods and classes for converting between units."""
 
-
 from .distance import Centimeter, Foot, Inch, Kilometer, Meter, Mile, Millimeter, Yard
 from .pressure import Hectopascal, InchesMercury, Pascal
 from .rate import InchesPerHour, MillimetersPerHour
