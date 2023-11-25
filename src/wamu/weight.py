@@ -42,12 +42,12 @@ class Weight(Quantity, ABC):
     @property
     def grams(self):
         """Return the value of this quantity in grams."""
-        return self.kilograms * 1000.0
+        return self.kilograms * 1000
 
     @property
     def milligrams(self):
         """Return the value of this quantity in milligrams."""
-        return self.grams * 1000.0
+        return self.grams * 1000
 
     @abstractproperty
     def pounds(self):
@@ -56,12 +56,12 @@ class Weight(Quantity, ABC):
     @property
     def ounces(self):
         """Return the value of this quantity in ounces."""
-        return self.pounds * 16.0
+        return self.pounds * 16
 
     @property
     def tons(self):
         """Return the value of this quantity in tons."""
-        return self.pounds / 2000.0
+        return self.pounds / 2000
 
     def __call__(self, type):  # noqa: C901
         """Convert this Weight quantity to the given type."""
@@ -138,7 +138,7 @@ class Ounce(Pound, symbol=WeightUnit.OUNCE):
     @property
     def pounds(self):
         """Return the value of this quantity in pounds."""
-        return self.value / 16.0
+        return self.value / 16
 
 
 class Ton(Pound, symbol=WeightUnit.TON):
@@ -147,4 +147,4 @@ class Ton(Pound, symbol=WeightUnit.TON):
     @property
     def pounds(self):
         """Return the value of this quantity in pounds."""
-        return self.value * 2000.0
+        return self.value * 2000

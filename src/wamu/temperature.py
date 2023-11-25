@@ -97,7 +97,7 @@ class Celsius(Temperature, symbol=TemperatureUnit.CELCIUS):
     @property
     def fahrenheit(self):
         """Return the value of this quantity as Fahrenheit."""
-        return (self.celcius * 1.8) + 32.0
+        return (self.celcius * 1.8) + 32
 
 
 class Fahrenheit(Temperature, symbol=TemperatureUnit.FAHRENHEIT):
@@ -106,7 +106,7 @@ class Fahrenheit(Temperature, symbol=TemperatureUnit.FAHRENHEIT):
     @property
     def celcius(self):
         """Return the value of this quantity as Celsius."""
-        return (self.fahrenheit - 32.0) / 1.8
+        return (self.fahrenheit - 32) / 1.8
 
     @property
     def fahrenheit(self):

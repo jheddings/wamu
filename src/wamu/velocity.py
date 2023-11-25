@@ -47,7 +47,7 @@ class Velocity(Quantity, ABC):
     @property
     def miles_per_hr(self):
         """Return the value of this quantity as miles per hour"""
-        return (self.feet_per_sec * 3600.0) / 5280.0
+        return (self.feet_per_sec * 3600) / 5280
 
     @property
     def knots(self):
@@ -102,7 +102,7 @@ class KilometersPerHour(MetersPerSecond, symbol=VelocityUnit.KILOMETERS_PER_HOUR
     @property
     def meters_per_sec(self):
         """Return the value of this quantity as meters per second"""
-        return (self.value * 1000.0) / 3600.0
+        return (self.value * 1000) / 3600
 
 
 class FeetPerSecond(Velocity, symbol=VelocityUnit.FEET_PER_SECOND):
@@ -125,7 +125,7 @@ class MilesPerHour(FeetPerSecond, symbol=VelocityUnit.MILES_PER_HOUR):
     @property
     def feet_per_sec(self):
         """Return the value of this quantity as feet per second"""
-        return (self.value * 5280.0) / 3600.0
+        return (self.value * 5280) / 3600
 
 
 class Knots(MetersPerSecond, symbol=VelocityUnit.KNOTS):

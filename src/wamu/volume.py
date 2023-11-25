@@ -44,7 +44,7 @@ class Volume(Quantity, ABC):
     @property
     def milliliters(self):
         """Return the value of this quantity in milliliters."""
-        return self.liters * 1000.0
+        return self.liters * 1000
 
     @abstractproperty
     def gallons(self):
@@ -53,17 +53,17 @@ class Volume(Quantity, ABC):
     @property
     def pints(self):
         """Return the value of this quantity in pints."""
-        return self.gallons * 8.0
+        return self.gallons * 8
 
     @property
     def quarts(self):
         """Return the value of this quantity in quarts."""
-        return self.gallons * 4.0
+        return self.gallons * 4
 
     @property
     def fl_ounces_us(self):
         """Return the value of this quantity in US fluid ounces."""
-        return self.gallons * 128.0
+        return self.gallons * 128
 
     def __call__(self, type):  # noqa: C901
         """Convert this Volume quantity to the given type."""
@@ -131,7 +131,7 @@ class Pint(Gallon, symbol=VolumeUnit.PINT):
     @property
     def gallons(self):
         """Return the value of this quantity in gallons."""
-        return self.value / 8.0
+        return self.value / 8
 
 
 class Quart(Gallon, symbol=VolumeUnit.QUART):
@@ -140,7 +140,7 @@ class Quart(Gallon, symbol=VolumeUnit.QUART):
     @property
     def gallons(self):
         """Return the value of this quantity in gallons."""
-        return self.value / 4.0
+        return self.value / 4
 
 
 class FluidOunceUS(Gallon, symbol=VolumeUnit.US_FLUID_OUNCE):
@@ -149,4 +149,4 @@ class FluidOunceUS(Gallon, symbol=VolumeUnit.US_FLUID_OUNCE):
     @property
     def gallons(self):
         """Return the value of this quantity in gallons."""
-        return self.value / 128.0
+        return self.value / 128

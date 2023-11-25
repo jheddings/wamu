@@ -72,17 +72,17 @@ class Distance(Quantity, ABC):
     @property
     def centimeters(self):
         """Return the value of this quantity in centimeters."""
-        return self.meters * 100.0
+        return self.meters * 100
 
     @property
     def millimeters(self):
         """Return the value of this quantity in millimeters."""
-        return self.meters * 1000.0
+        return self.meters * 1000
 
     @property
     def miles(self):
         """Return the value of this quantity in miles."""
-        return self.feet / 5280.0
+        return self.feet / 5280
 
     @abstractproperty
     def feet(self):
@@ -91,12 +91,12 @@ class Distance(Quantity, ABC):
     @property
     def inches(self):
         """Return the value of this quantity in inches."""
-        return self.feet * 12.0
+        return self.feet * 12
 
     @property
     def yards(self):
         """Return the value of this quantity in yards."""
-        return self.feet / 3.0
+        return self.feet / 3
 
     @property
     def astronomical_units(self):
@@ -197,7 +197,7 @@ class Kilometer(Meter, symbol=DistanceUnit.KILOMETER):
     @property
     def meters(self):
         """Return the value of this quantity in meters."""
-        return self.value * 1000.0
+        return self.value * 1000
 
 
 class NauticalMile(Meter, symbol=DistanceUnit.NAUTICAL_MILE):
@@ -206,7 +206,7 @@ class NauticalMile(Meter, symbol=DistanceUnit.NAUTICAL_MILE):
     @property
     def meters(self):
         """Return the value of this quantity in meters."""
-        return self.value * 1852.0
+        return self.value * 1852
 
 
 class Foot(Distance, symbol=DistanceUnit.FOOT):
@@ -229,7 +229,7 @@ class Mile(Foot, symbol=DistanceUnit.MILE):
     @property
     def feet(self):
         """Return the value of this quantity in feet."""
-        return self.value * 5280.0
+        return self.value * 5280
 
 
 class Yard(Foot, symbol=DistanceUnit.YARD):
@@ -238,7 +238,7 @@ class Yard(Foot, symbol=DistanceUnit.YARD):
     @property
     def feet(self):
         """Return the value of this quantity in feet."""
-        return self.value * 3.0
+        return self.value * 3
 
 
 class Inch(Foot, symbol=DistanceUnit.INCH):
@@ -247,7 +247,7 @@ class Inch(Foot, symbol=DistanceUnit.INCH):
     @property
     def feet(self):
         """Return the value of this quantity in feet."""
-        return self.value / 12.0
+        return self.value / 12
 
 
 class AstronomicalUnit(Meter, symbol=DistanceUnit.ASTRONOMICAL_UNIT):

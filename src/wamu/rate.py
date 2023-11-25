@@ -31,7 +31,7 @@ class Rate(Quantity, ABC):
     @property
     def millimeters_per_hr(self):
         """Return the value of this quantity as millimeters per hour"""
-        return self.centimeters_per_hr * 10.0
+        return self.centimeters_per_hr * 10
 
     @abstractproperty
     def inches_per_hour(self):
