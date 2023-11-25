@@ -33,6 +33,9 @@ def test_degC_freezing():
 
     assert_is_freezing(tempC)
 
+    # remove when deprecated property is removed
+    assert tempC.degrees_celcius == tempC.celcius
+
 
 def test_degF_freezing():
     """Confirm Fahrenheit conversions for freezing."""
@@ -48,6 +51,9 @@ def test_degF_freezing():
 
     assert_is_freezing(tempF)
 
+    # remove when deprecated property is removed
+    assert tempF.degrees_fahrenheit == tempF.fahrenheit
+
 
 def test_degK_freezing():
     """Confirm Kelvin conversions for freezing."""
@@ -62,6 +68,9 @@ def test_degK_freezing():
     assert repr(tempK) == "Kelvin(273.15)"
 
     assert_is_freezing(tempK)
+
+    # remove when deprecated property is removed
+    assert tempK.degrees_kelvin == tempK.kelvin
 
 
 def test_boiling_temps():

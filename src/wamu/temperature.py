@@ -33,12 +33,12 @@ class Temperature(Quantity, ABC):
     def celcius(self):
         """Return the value of this quantity as Celsius."""
 
+    @property
     @deprecated(
         deprecated_in="0.1",
         removed_in="1.0",
         details="Use the 'celcius' property instead",
     )
-    @property
     def degrees_celcius(self):
         """Return the value of this quantity as Celsius."""
         return self.celcius
@@ -47,12 +47,12 @@ class Temperature(Quantity, ABC):
     def fahrenheit(self):
         """Return the value of this quantity as Fahrenheit."""
 
+    @property
     @deprecated(
         deprecated_in="0.1",
         removed_in="1.0",
         details="Use the 'fahrenheit' property instead",
     )
-    @property
     def degrees_fahrenheit(self):
         """Return the value of this quantity as Fahrenheit."""
         return self.fahrenheit
@@ -62,12 +62,12 @@ class Temperature(Quantity, ABC):
         """Return the value of this quantity as Kelvin."""
         return self.celcius + 273.15
 
+    @property
     @deprecated(
         deprecated_in="0.1",
         removed_in="1.0",
         details="Use the 'kelvin' property instead",
     )
-    @property
     def degrees_kelvin(self):
         """Return the value of this quantity as Kelvin."""
         return self.kelvin
