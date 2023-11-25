@@ -2,7 +2,7 @@
 
 from abc import ABC, abstractproperty
 
-from typing_extensions import deprecated
+from deprecation import deprecated
 
 from .quantity import Quantity, UnitSymbol
 
@@ -33,7 +33,7 @@ class Temperature(Quantity, ABC):
     def celcius(self):
         """Return the value of this quantity as Celsius."""
 
-    @deprecated("Use the 'celcius' property instead (remove in 1.0)")
+    @deprecated(details="Use the 'celcius' property instead")
     @property
     def degrees_celcius(self):
         """Return the value of this quantity as Celsius."""
@@ -43,7 +43,7 @@ class Temperature(Quantity, ABC):
     def fahrenheit(self):
         """Return the value of this quantity as Fahrenheit."""
 
-    @deprecated("Use the 'fahrenheit' property instead (remove in 1.0)")
+    @deprecated(details="Use the 'fahrenheit' property instead")
     @property
     def degrees_fahrenheit(self):
         """Return the value of this quantity as Fahrenheit."""
@@ -54,7 +54,7 @@ class Temperature(Quantity, ABC):
         """Return the value of this quantity as Kelvin."""
         return self.celcius + 273.15
 
-    @deprecated("Use the 'kelvin' property instead (remove in 1.0)")
+    @deprecated(details="Use the 'kelvin' property instead")
     @property
     def degrees_kelvin(self):
         """Return the value of this quantity as Kelvin."""
