@@ -22,18 +22,18 @@ class Rate(Quantity, ABC):
     """Base for all rate unit types."""
 
     @abstractproperty
-    def cmph(self):
+    def centimeters_per_hr(self):
         """Return the value of this quantity as centimeters per hour"""
 
     @property
-    def mmph(self):
+    def millimeters_per_hr(self):
         """Return the value of this quantity as millimeters per hour"""
-        return self.cmph * 10.0
+        return self.centimeters_per_hr * 10.0
 
     @property
-    def inph(self):
+    def inches_per_hour(self):
         """Return the value of this quantity as inches per hour"""
-        return self.cmph * 0.393700787
+        return self.centimeters_per_hr * 0.393700787
 
 
 class CentimersPerHour(Rate):
@@ -45,7 +45,7 @@ class CentimersPerHour(Rate):
         return RateUnit.CENTIMETERS_PER_HOUR
 
     @property
-    def cmph(self):
+    def centimeters_per_hr(self):
         """Return the value of this quantity as centimeters per second"""
         return self.value
 
@@ -58,7 +58,7 @@ class MillimetersPerHour(Rate):
         return RateUnit.MILLIMETERS_PER_HOUR
 
     @property
-    def cmph(self):
+    def centimeters_per_hr(self):
         """Return the value of this quantity as centimeters per second"""
         return self.value * 0.1
 
@@ -71,6 +71,6 @@ class InchesPerHour(Rate):
         return RateUnit.INCHES_PER_HOUR
 
     @property
-    def cmph(self):
+    def centimeters_per_hr(self):
         """Return the value of this quantity as centimeters per second"""
         return self.value * 2.54

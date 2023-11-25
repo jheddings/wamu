@@ -15,7 +15,7 @@ def test_one_pascal():
     assert int(pa) == 1
 
     assert pa.bar == 1e-5
-    assert isclose(pa.psi, 0.0001450377)
+    assert isclose(pa.pounds_per_sq_in, 0.0001450377)
 
     assert str(pa) == "1 Pa"
     assert repr(pa) == "Pascal(1)"
@@ -32,7 +32,7 @@ def test_one_hPa():
 
     assert hPa.bar == 1e-3
 
-    assert isclose(hPa.inHg, 0.02953)
+    assert isclose(hPa.inches_mercury, 0.02953)
 
     assert str(hPa) == "1 hPa"
     assert repr(hPa) == "Hectopascal(1)"
@@ -48,7 +48,7 @@ def test_one_inHg():
     assert int(inHg) == 1
 
     assert isclose(inHg.bar, 0.033864)
-    assert isclose(inHg.psi, 0.4911542)
+    assert isclose(inHg.pounds_per_sq_in, 0.4911542)
 
     assert str(inHg) == "1 inHg"
     assert repr(inHg) == "InchesMercury(1)"

@@ -36,32 +36,32 @@ class Weight(Quantity, ABC):
     """Base for all weight unit types."""
 
     @abstractproperty
-    def kg(self):
+    def kilograms(self):
         """Return the value of this quantity in kilograms."""
 
     @property
-    def g(self):
+    def grams(self):
         """Return the value of this quantity in grams."""
-        return self.kg * 1000.0
+        return self.kilograms * 1000.0
 
     @property
-    def mg(self):
+    def milligrams(self):
         """Return the value of this quantity in milligrams."""
-        return self.g * 1000.0
+        return self.grams * 1000.0
 
     @abstractproperty
-    def lbs(self):
+    def pounds(self):
         """Return the value of this quantity in pounds."""
 
     @property
-    def oz(self):
+    def ounces(self):
         """Return the value of this quantity in ounces."""
-        return self.lbs * 16.0
+        return self.pounds * 16.0
 
     @property
-    def ton(self):
+    def tons(self):
         """Return the value of this quantity in tons."""
-        return self.lbs / 2000.0
+        return self.pounds / 2000.0
 
 
 class Kilogram(Weight):
@@ -73,14 +73,14 @@ class Kilogram(Weight):
         return WeightUnit.KILOGRAM
 
     @property
-    def kg(self):
+    def kilograms(self):
         """Return the value of this quantity in kilograms."""
         return self.value
 
     @property
-    def lbs(self):
+    def pounds(self):
         """Return the value of this quantity in pounds."""
-        return self.kg * 2.20462262
+        return self.kilograms * 2.20462262
 
 
 class Gram(Kilogram):
@@ -92,7 +92,7 @@ class Gram(Kilogram):
         return WeightUnit.GRAM
 
     @property
-    def kg(self):
+    def kilograms(self):
         """Return the value of this quantity in kilograms."""
         return self.value / 1000
 
@@ -106,7 +106,7 @@ class Milligram(Kilogram):
         return WeightUnit.MILLIGRAM
 
     @property
-    def kg(self):
+    def kilograms(self):
         """Return the value of this quantity in kilograms."""
         return self.value / 1000000
 
@@ -120,12 +120,12 @@ class Pound(Weight):
         return WeightUnit.POUND
 
     @property
-    def kg(self):
+    def kilograms(self):
         """Return the value of this quantity in kilograms."""
-        return self.lbs * 0.45359237
+        return self.pounds * 0.45359237
 
     @property
-    def lbs(self):
+    def pounds(self):
         """Return the value of this quantity in pounds."""
         return self.value
 
@@ -139,7 +139,7 @@ class Ounce(Pound):
         return WeightUnit.OUNCE
 
     @property
-    def lbs(self):
+    def pounds(self):
         """Return the value of this quantity in pounds."""
         return self.value / 16.0
 
@@ -153,6 +153,6 @@ class Ton(Pound):
         return WeightUnit.TON
 
     @property
-    def lbs(self):
+    def pounds(self):
         """Return the value of this quantity in pounds."""
         return self.value * 2000.0

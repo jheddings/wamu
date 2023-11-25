@@ -27,23 +27,23 @@ class Pressure(Quantity, ABC):
     @property
     def bar(self):
         """Return the value of this quantity as bar."""
-        return self.hPa * 0.001
+        return self.hectopascals * 0.001
 
     @property
-    def hPa(self):
+    def hectopascals(self):
         """Return the value of this quantity as Hectopascals."""
-        return self.Pa * 0.01
+        return self.pascals * 0.01
 
     @abstractproperty
-    def Pa(self):
+    def pascals(self):
         """Return the value of this quantity as Pascals."""
 
     @abstractproperty
-    def inHg(self):
+    def inches_mercury(self):
         """Return the value of this quantity as inches-mercury."""
 
     @abstractproperty
-    def psi(self):
+    def pounds_per_sq_in(self):
         """Return the value of this quantity as pounds-per-square-inch."""
 
 
@@ -56,19 +56,19 @@ class Pascal(Pressure):
         return PressureUnit.PASCAL
 
     @property
-    def Pa(self):
+    def pascals(self):
         """Return the value of this quantity as Pascals."""
         return self.value
 
     @property
-    def inHg(self):
+    def inches_mercury(self):
         """Return the value of this quantity as inches-mercury."""
-        return self.Pa / 3386.3886666667
+        return self.pascals / 3386.3886666667
 
     @property
-    def psi(self):
+    def pounds_per_sq_in(self):
         """Return the value of this quantity as pounds-per-square-inch."""
-        return self.Pa / 6894.75729
+        return self.pascals / 6894.75729
 
 
 class Hectopascal(Pascal):
@@ -80,7 +80,7 @@ class Hectopascal(Pascal):
         return PressureUnit.HECTOPASCAL
 
     @property
-    def Pa(self):
+    def pascals(self):
         """Return the value of this quantity as Pascals."""
         return self.value * 100
 
@@ -94,16 +94,16 @@ class InchesMercury(Pressure):
         return PressureUnit.INCHES_MERCURY
 
     @property
-    def Pa(self):
+    def pascals(self):
         """Return the value of this quantity as Pascals."""
-        return self.inHg * 3386.3886666667
+        return self.inches_mercury * 3386.3886666667
 
     @property
-    def inHg(self):
+    def inches_mercury(self):
         """Return the value of this quantity as inches-mercury."""
         return self.value
 
     @property
-    def psi(self):
+    def pounds_per_sq_in(self):
         """Return the value of this quantity as pounds-per-square-inch."""
-        return self.inHg * 0.4911541996322
+        return self.inches_mercury * 0.4911541996322

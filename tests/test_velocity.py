@@ -14,11 +14,11 @@ def test_one_mps():
     assert float(mps) == 1.0
     assert int(mps) == 1
 
-    assert mps.kph == 3.6
+    assert mps.kilometers_per_hr == 3.6
 
-    assert isclose(mps.mph, 2.23694)
-    assert isclose(mps.fps, 3.28084)
-    assert isclose(mps.knot, 1.94384449)
+    assert isclose(mps.miles_per_hr, 2.23694)
+    assert isclose(mps.feet_per_sec, 3.28084)
+    assert isclose(mps.knots, 1.94384449)
 
     assert str(mps) == "1 m/s"
     assert repr(mps) == "MetersPerSecond(1)"
@@ -33,10 +33,10 @@ def test_one_kph():
     assert float(kph) == 1.0
     assert int(kph) == 1
 
-    assert isclose(kph.mps, 0.27777778)
-    assert isclose(kph.mph, 0.62137119)
-    assert isclose(kph.fps, 0.91134442)
-    assert isclose(kph.knot, 0.5399568)
+    assert isclose(kph.meters_per_sec, 0.27777778)
+    assert isclose(kph.miles_per_hr, 0.62137119)
+    assert isclose(kph.feet_per_sec, 0.91134442)
+    assert isclose(kph.knots, 0.5399568)
 
     assert str(kph) == "1 km/h"
     assert repr(kph) == "KilometersPerHour(1)"
@@ -51,10 +51,10 @@ def test_one_mph():
     assert float(mph) == 1.0
     assert int(mph) == 1
 
-    assert isclose(mph.fps, 1.466667)
-    assert isclose(mph.mps, 0.44704)
-    assert isclose(mph.kph, 1.609344)
-    assert isclose(mph.knot, 0.8689762419)
+    assert isclose(mph.feet_per_sec, 1.466667)
+    assert isclose(mph.meters_per_sec, 0.44704)
+    assert isclose(mph.kilometers_per_hr, 1.609344)
+    assert isclose(mph.knots, 0.8689762419)
 
     assert str(mph) == "1 mph"
     assert repr(mph) == "MilesPerHour(1)"
@@ -69,10 +69,10 @@ def test_one_fps():
     assert float(fps) == 1.0
     assert int(fps) == 1
 
-    assert isclose(fps.mps, 0.3048)
-    assert isclose(fps.kph, 1.09728)
-    assert isclose(fps.mph, 0.68181818)
-    assert isclose(fps.knot, 0.5924838)
+    assert isclose(fps.meters_per_sec, 0.3048)
+    assert isclose(fps.kilometers_per_hr, 1.09728)
+    assert isclose(fps.miles_per_hr, 0.68181818)
+    assert isclose(fps.knots, 0.5924838)
 
     assert str(fps) == "1 fps"
     assert repr(fps) == "FeetPerSecond(1)"

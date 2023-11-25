@@ -5,18 +5,18 @@ import wamu
 
 def assert_is_freezing(temp: wamu.temperature.Temperature):
     """Assert all values match expected levels for freezing."""
-    assert temp.degC == 0.0
-    assert temp.degF == 32.0
-    assert temp.degK == 273.15
+    assert temp.degrees_celcius == 0.0
+    assert temp.degrees_fahrenheit == 32.0
+    assert temp.degrees_kelvin == 273.15
 
 
 def test_convert_none():
     """Make sure that conversions with None are also None."""
     tempC = wamu.Celsius(None)
 
-    assert tempC.degC is None
-    assert tempC.degF is None
-    assert tempC.degK is None
+    assert tempC.degrees_celcius is None
+    assert tempC.degrees_fahrenheit is None
+    assert tempC.degrees_kelvin is None
 
 
 def test_degC_freezing():
@@ -67,13 +67,13 @@ def test_degK_freezing():
 def test_boiling_temps():
     """Confirm conversions for boiling temperatures."""
     tempF = wamu.Fahrenheit(212.0)
-    assert tempF.degC == 100.0
-    assert tempF.degK == 373.15
+    assert tempF.degrees_celcius == 100.0
+    assert tempF.degrees_kelvin == 373.15
 
     tempC = wamu.Celsius(100.0)
-    assert tempC.degF == 212.0
-    assert tempF.degK == 373.15
+    assert tempC.degrees_fahrenheit == 212.0
+    assert tempF.degrees_kelvin == 373.15
 
     tempK = wamu.Kelvin(373.15)
-    assert tempK.degC == 100.0
-    assert tempK.degF == 212.0
+    assert tempK.degrees_celcius == 100.0
+    assert tempK.degrees_fahrenheit == 212.0

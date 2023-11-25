@@ -28,17 +28,17 @@ class Temperature(Quantity, ABC):
     """Base for all temperature unit types."""
 
     @abstractproperty
-    def degC(self):
+    def degrees_celcius(self):
         """Return the value of this quantity as Celsius."""
 
     @abstractproperty
-    def degF(self):
+    def degrees_fahrenheit(self):
         """Return the value of this quantity as Fahrenheit."""
 
     @property
-    def degK(self):
+    def degrees_kelvin(self):
         """Return the value of this quantity as Kelvin."""
-        return self.degC + 273.15
+        return self.degrees_celcius + 273.15
 
 
 class Celsius(Temperature):
@@ -50,14 +50,14 @@ class Celsius(Temperature):
         return TemperatureUnit.CELCIUS
 
     @property
-    def degC(self):
+    def degrees_celcius(self):
         """Return the value of this quantity as Celsius."""
         return self.value
 
     @property
-    def degF(self):
+    def degrees_fahrenheit(self):
         """Return the value of this quantity as Fahrenheit."""
-        return (self.degC * 1.8) + 32.0
+        return (self.degrees_celcius * 1.8) + 32.0
 
 
 class Fahrenheit(Temperature):
@@ -69,12 +69,12 @@ class Fahrenheit(Temperature):
         return TemperatureUnit.FAHRENHEIT
 
     @property
-    def degC(self):
+    def degrees_celcius(self):
         """Return the value of this quantity as Celsius."""
-        return (self.degF - 32.0) / 1.8
+        return (self.degrees_fahrenheit - 32.0) / 1.8
 
     @property
-    def degF(self):
+    def degrees_fahrenheit(self):
         """Return the value of this quantity as Fahrenheit."""
         return self.value
 
@@ -88,6 +88,6 @@ class Kelvin(Celsius):
         return TemperatureUnit.KELVIN
 
     @property
-    def degC(self):
+    def degrees_celcius(self):
         """Return the value of this quantity as Celsius."""
         return self.value - 273.15

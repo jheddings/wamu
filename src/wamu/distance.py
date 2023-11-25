@@ -40,6 +40,10 @@ class DistanceUnit(UnitSymbol):
     YARDS = "yd"
     YD = "yd"
 
+    PARSEC = "pc"
+    PARSECS = "pc"
+    PC = "pc"
+
 
 class Distance(Quantity, ABC):
     """Base for all distance unit types."""

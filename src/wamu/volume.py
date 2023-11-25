@@ -38,32 +38,32 @@ class Volume(Quantity, ABC):
     """Base for all volume unit types."""
 
     @abstractproperty
-    def L(self):
+    def liters(self):
         """Return the value of this quantity in liters."""
 
     @property
-    def mL(self):
+    def milliliters(self):
         """Return the value of this quantity in milliliters."""
-        return self.L * 1000.0
+        return self.liters * 1000.0
 
     @abstractproperty
-    def gal(self):
+    def gallons(self):
         """Return the value of this quantity in gallons."""
 
     @property
-    def pint(self):
+    def pints(self):
         """Return the value of this quantity in pints."""
-        return self.gal * 8.0
+        return self.gallons * 8.0
 
     @property
-    def quart(self):
+    def quarts(self):
         """Return the value of this quantity in quarts."""
-        return self.gal * 4.0
+        return self.gallons * 4.0
 
     @property
-    def us_oz(self):
+    def fl_ounces_us(self):
         """Return the value of this quantity in US fluid ounces."""
-        return self.gal * 128.0
+        return self.gallons * 128.0
 
 
 class Liter(Volume):
@@ -75,14 +75,14 @@ class Liter(Volume):
         return VolumeUnit.LITER
 
     @property
-    def L(self):
+    def liters(self):
         """Return the value of this quantity in liters."""
         return self.value
 
     @property
-    def gal(self):
+    def gallons(self):
         """Return the value of this quantity in gallons."""
-        return self.L * 0.2641720524
+        return self.liters * 0.2641720524
 
 
 class Milliliter(Liter):
@@ -94,7 +94,7 @@ class Milliliter(Liter):
         return VolumeUnit.MILLILITER
 
     @property
-    def L(self):
+    def liters(self):
         """Return the value of this quantity in liters."""
         return self.value / 1000
 
@@ -108,12 +108,12 @@ class Gallon(Liter):
         return VolumeUnit.GALLON
 
     @property
-    def L(self):
+    def liters(self):
         """Return the value of this quantity in liters."""
-        return self.gal * 3.785411784
+        return self.gallons * 3.785411784
 
     @property
-    def gal(self):
+    def gallons(self):
         """Return the value of this quantity in gallons."""
         return self.value
 
@@ -127,7 +127,7 @@ class Pint(Gallon):
         return VolumeUnit.PINT
 
     @property
-    def gal(self):
+    def gallons(self):
         """Return the value of this quantity in gallons."""
         return self.value / 8.0
 
@@ -141,7 +141,7 @@ class Quart(Gallon):
         return VolumeUnit.QUART
 
     @property
-    def gal(self):
+    def gallons(self):
         """Return the value of this quantity in gallons."""
         return self.value / 4.0
 
@@ -155,6 +155,6 @@ class FluidOunceUS(Gallon):
         return VolumeUnit.US_FLUID_OUNCE
 
     @property
-    def gal(self):
+    def gallons(self):
         """Return the value of this quantity in gallons."""
         return self.value / 128.0
