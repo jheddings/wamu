@@ -164,6 +164,7 @@ class Meter(Distance, symbol=DistanceUnit.METER):
 
     @property
     def meters(self):
+        """Return the value of this quantity in meters."""
         return self.value
 
     @property
@@ -177,6 +178,7 @@ class Millimeter(Meter, symbol=DistanceUnit.MILLIMETER):
 
     @property
     def meters(self):
+        """Return the value of this quantity in meters."""
         return self.value * 0.001
 
 
@@ -185,6 +187,7 @@ class Centimeter(Meter, symbol=DistanceUnit.CENTIMETER):
 
     @property
     def meters(self):
+        """Return the value of this quantity in meters."""
         return self.value * 0.01
 
 
@@ -193,7 +196,17 @@ class Kilometer(Meter, symbol=DistanceUnit.KILOMETER):
 
     @property
     def meters(self):
+        """Return the value of this quantity in meters."""
         return self.value * 1000.0
+
+
+class NauticalMile(Meter, symbol=DistanceUnit.NAUTICAL_MILE):
+    """A representation of a nautical mile."""
+
+    @property
+    def meters(self):
+        """Return the value of this quantity in meters."""
+        return self.value * 1852.0
 
 
 class Foot(Distance, symbol=DistanceUnit.FOOT):
@@ -201,6 +214,7 @@ class Foot(Distance, symbol=DistanceUnit.FOOT):
 
     @property
     def meters(self):
+        """Return the value of this quantity in meters."""
         return self.feet * 0.3048
 
     @property
@@ -234,15 +248,6 @@ class Inch(Foot, symbol=DistanceUnit.INCH):
     def feet(self):
         """Return the value of this quantity in feet."""
         return self.value / 12.0
-
-
-class NauticalMile(Meter, symbol=DistanceUnit.NAUTICAL_MILE):
-    """A representation of a nautical mile."""
-
-    @property
-    def meters(self):
-        """Return the value of this quantity in meters."""
-        return self.value * 1852.0
 
 
 class AstronomicalUnit(Meter, symbol=DistanceUnit.ASTRONOMICAL_UNIT):
