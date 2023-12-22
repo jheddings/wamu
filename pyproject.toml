@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "wamu"
-version = "0.2.1"
+version = "0.3.0"
 description = "Utilities for working with Weights & Measures in Python"
 authors = ["jheddings <jheddings@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10.0"
 deprecation = "^2.1.0"
 
 [tool.poetry.group.dev.dependencies]
