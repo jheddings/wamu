@@ -12,7 +12,7 @@ deprecation = "^2.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.8.0"
-ruff = "^0.6.6"
+ruff = "^0.6.7"
 pytest = "^8.3.3"
 coverage = "^7.6.1"
 
