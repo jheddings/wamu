@@ -11,7 +11,7 @@ python = "^3.9"
 deprecation = "^2.1.0"
 
 [tool.poetry.group.dev.dependencies]
-pre-commit = "^4.1.0"
+pre-commit = "^4.2.0"
 ruff = "^0.11.0"
 pytest = "^8.3.5"
 coverage = "^7.6.12"
