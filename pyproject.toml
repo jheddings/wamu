@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wamu"
-version = "0.3.1"
+version = "0.3.2"
 description = "Utilities for working with Weights & Measures in Python"
 authors = ["jheddings <jheddings@gmail.com>"]
 license = "MIT"
