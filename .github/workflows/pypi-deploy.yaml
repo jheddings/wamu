@@ -1,0 +1,21 @@
+# Publish to PyPI when a new release is published
+---
+name: Publish packages to PyPI
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  pypi-publish:
+    name: Publish package to PyPI
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.3.0
+
+      - name: Upload package to PyPI
+        uses: JRubics/poetry-publish@v2.1
+        with:
+          pypi_token: ${{ secrets.PYPI_TOKEN }}
+          ignore_dev_requirements: true
