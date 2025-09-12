@@ -2,7 +2,6 @@
 
 from abc import abstractmethod
 from enum import Enum
-from typing import Union
 
 
 class UnitSymbol(str, Enum):
@@ -14,7 +13,7 @@ class Quantity:
 
     _unit_symbol = None
 
-    def __init__(self, value: Union[int, float]):
+    def __init__(self, value: int | float):
         self.value = value
 
     def __init_subclass__(cls, symbol: UnitSymbol = None, **kwargs):

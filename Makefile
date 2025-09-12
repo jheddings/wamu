@@ -9,7 +9,7 @@ SRCDIR ?= $(BASEDIR)/src
 APPNAME ?= $(shell grep -m1 '^name' "$(BASEDIR)/pyproject.toml" | sed -e 's/name.*"\(.*\)"/\1/')
 APPVER ?= $(shell grep -m1 '^version' "$(BASEDIR)/pyproject.toml" | sed -e 's/version.*"\(.*\)"/\1/')
 
-WITH_VENV := poetry run
+WITH_VENV := uv run
 
 export
 
@@ -20,17 +20,17 @@ all: venv preflight build
 
 .PHONY: venv
 venv:
-	poetry sync --no-interaction
+	uv sync --all-extras
 	$(WITH_VENV) pre-commit install --install-hooks --overwrite
 
 
-poetry.lock: venv
-	poetry lock --no-interaction
+uv.lock: venv
+	uv lock
 
 
 .PHONY: build
 build: preflight
-	poetry build --no-interaction
+	uv build
 
 
 .PHONY: release
@@ -82,6 +82,6 @@ clobber: clean
 	$(WITH_VENV) pre-commit uninstall
 	rm -Rf "$(BASEDIR)/htmlcov"
 	rm -Rf "$(BASEDIR)/dist"
-	poetry env remove --all --no-interaction
+	rm -Rf "$(BASEDIR)/.venv"
 	docker image rm "$(APPNAME):latest" 2>/dev/null || true
 	docker image rm "$(APPNAME):$(APPVER)" 2>/dev/null || true
