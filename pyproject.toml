@@ -11,7 +11,7 @@ dependencies = ["deprecation>=2.1.0,<3"]
 [dependency-groups]
 dev = [
     "pre-commit>=4.3.0,<5",
-    "ruff>=0.13.0,<0.14",
+    "ruff>=0.13.1,<0.14",
     "pytest>=8.4.2,<9",
     "coverage>=7.10.6,<8",
 ]
