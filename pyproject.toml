@@ -1,6 +1,6 @@
 [project]
 name = "wamu"
-version = "0.3.3"
+version = "0.3.4"
 description = "Utilities for working with Weights & Measures in Python"
 authors = [{ name = "jheddings", email = "jheddings@gmail.com" }]
 requires-python = ">=3.12, <4"
