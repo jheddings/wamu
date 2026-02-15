@@ -28,9 +28,19 @@ uv.lock: venv
 	uv lock
 
 
-.PHONY: build
-build: preflight
+.PHONY: tidy
+tidy: venv
+	$(WITH_VENV) ruff format "$(SRCDIR)" "$(BASEDIR)/tests"
+	$(WITH_VENV) ruff check --fix "$(SRCDIR)" "$(BASEDIR)/tests"
+
+
+.PHONY: build-dist
+build-dist: preflight
 	uv build
+
+
+.PHONY: build
+build: build-dist
 
 
 .PHONY: release
@@ -39,8 +49,8 @@ release: preflight
 	git push origin "v$(APPVER)"
 
 
-.PHONY: static-checks
-static-checks: venv
+.PHONY: precommit
+precommit: venv
 	$(WITH_VENV) pre-commit run --all-files --verbose
 
 
@@ -63,8 +73,12 @@ coverage-html: venv unit-tests
 coverage: coverage-report coverage-html
 
 
+.PHONY: test
+test: unit-tests
+
+
 .PHONY: preflight
-preflight: static-checks unit-tests coverage-report
+preflight: precommit unit-tests
 
 
 .PHONY: clean
@@ -79,9 +93,10 @@ clean:
 
 .PHONY: clobber
 clobber: clean
-	$(WITH_VENV) pre-commit uninstall
+	$(WITH_VENV) pre-commit uninstall || true
 	rm -Rf "$(BASEDIR)/htmlcov"
 	rm -Rf "$(BASEDIR)/dist"
 	rm -Rf "$(BASEDIR)/.venv"
+	rm -f "$(BASEDIR)"/*.log
 	docker image rm "$(APPNAME):latest" 2>/dev/null || true
 	docker image rm "$(APPNAME):$(APPVER)" 2>/dev/null || true

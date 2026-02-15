@@ -1,10 +1,10 @@
 """Base functionality for working with quantities."""
 
 from abc import abstractmethod
-from enum import Enum
+from enum import StrEnum
 
 
-class UnitSymbol(str, Enum):
+class UnitSymbol(StrEnum):
     """Symbols for all units."""
 
 
