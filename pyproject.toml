@@ -3,7 +3,7 @@ name = "wamu"
 version = "0.3.5"
 description = "Utilities for working with Weights & Measures in Python"
 authors = [{ name = "jheddings", email = "jheddings@gmail.com" }]
-requires-python = ">=3.14.3, <4"
+requires-python = ">=3.12, <4"
 readme = "README.md"
 license = "MIT"
 dependencies = ["deprecation>=2.1.0,<3"]
