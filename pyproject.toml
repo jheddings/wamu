@@ -14,6 +14,7 @@ dev = [
     "ruff>=0.15.1,<0.16",
     "pytest>=9.0.2,<10",
     "coverage>=7.13.4,<8",
+    "pyright>=1.1.408",
 ]
 
 [build-system]
@@ -25,9 +26,18 @@ packages = ["src/wamu"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--tb=short",
+]
 
 [tool.ruff]
-line-length = 88
+line-length = 100
 indent-width = 4
 
 [tool.ruff.lint]
@@ -53,5 +63,15 @@ indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["wamu"]
+
+[tool.pyright]
+pythonVersion = "3.12"
+include = ["src"]
+typeCheckingMode = "basic"
+reportMissingImports = true
+reportMissingTypeStubs = false
+reportOperatorIssue = false
+reportArgumentType = false
+reportOptionalMemberAccess = false

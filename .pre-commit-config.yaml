@@ -12,8 +12,15 @@ repos:
     rev: "v0.12.11"
     hooks:
       - id: ruff-format
+        args: ["--check"]
       - id: ruff-check
-        args: ["--fix"]
+
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: "v1.1.390"
+    hooks:
+      - id: pyright
+        additional_dependencies:
+          - deprecation>=2.1.0
 
   - repo: https://github.com/adrienverge/yamllint.git
     rev: "v1.33.0"
