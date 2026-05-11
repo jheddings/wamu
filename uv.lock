@@ -372,7 +372,7 @@ requires-dist = [{ name = "deprecation", specifier = ">=2.1.0,<3" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "coverage", specifier = ">=7.13.5,<8" },
+    { name = "coverage", specifier = ">=7.14.0,<8" },
     { name = "pre-commit", specifier = ">=4.6.0,<5" },
     { name = "pyright", specifier = ">=1.1.409" },
     { name = "pytest", specifier = ">=9.0.3,<10" },
